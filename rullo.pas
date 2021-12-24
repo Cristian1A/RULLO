@@ -632,37 +632,12 @@ BEGIN
 
     opcionPartida:=ElegirPartida;
     CASE opcionPartida OF
-       'A', 'B', 'C':BEGIN
-                rango := 9;
-                IF(opcionPartida = 'A') THEN BEGIN
-                        dimension := 5; 
-                        posDesactivable := 10;
-                END;
-                IF(opcionPartida = 'B') THEN BEGIN
-                       dimension := 6;
-                       posDesactivable := 12;
-                end;
-                IF(opcionPartida = 'C') THEN BEGIN
-                       dimension := 7;
-                       posDesactivable := 14;
-                END;
-            END;
-       'D','E','F':BEGIN
-               rango := 19;
-               IF(opcionPartida = 'D') THEN BEGIN
-                   dimension := 5;
-                   posDesactivable := 10;
-               END;
-               IF(opcionPartida = 'E') THEN BEGIN
-                   dimension := 6;
-                   posDesactivable := 12;
-               END;
-               IF(opcionPartida = 'F') THEN BEGIN
-                   dimension := 7; 
-                   posDesactivable := 14;
-               END;
-          END;
-    end;{CASE}
+      'A','B','C': rango:= 9;
+      'D','E','F': rango:= 19;
+      END;{CASE}
+    dimension:= ord(opcionPartida) - 60;
+    posDesactivable:= ord(opcionPartida) - 55;
+    
 InicializarPartida(tope, partida, dimension, rango, posDesactivable, opcionPartida);
 
 END;
