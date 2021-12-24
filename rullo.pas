@@ -30,16 +30,18 @@ TYPE
 VAR
   tope: integer;
 
-PROCEDURE ElegirPartida;
-BEGIN
-
-      WRITELN(' PARTIDAS DISPONIBLES ');
-      WRITELN('     5x5  6x6  7x7');
-      WRITELN(' 1-9  A    B    C');
-      WRITELN('1-19  D    E    F');
-
-END;
-
+FUNCTION ElegirPartida:char;
+    VAR c: char;
+    BEGIN
+      REPEAT
+        WRITELN('     5x5  6x6  7x7');
+        WRITELN(' 1-9  A    B    C');
+        WRITELN('1-19  D    E    F');
+        WRITE('Escriba el tipo de partida que quiere jugar ');c:= readkey;
+        CLRSCR;
+      UNTIL(c='a') or (c='b') or (c='c') or (c='d') or (c='e') or (c='f');
+      ElegirPartida:= UPCASE(c);
+    END;
 PROCEDURE Ayuda;
 BEGIN
 
@@ -628,18 +630,7 @@ VAR
   opcionPartida: char;
 BEGIN
 
-     REPEAT
-        ElegirPartida;
-        WRITELN;
-        WRITELN('Escriba el tipo de partida que quiere jugar -A, B, C, D, E o F- ');
-        READLN(opcionPartida);
-        opcionPartida := UPCASE(opcionPartida);
-        IF(opcionPartida < 'A') AND (opcionPartida > 'F') THEN BEGIN
-           WRITELN('opcion erronea, intentelo de nuevo');
-           WRITELN;
-        end;
-     UNTIL(opcionPartida >= 'A') AND (opcionPartida <= 'F');
-
+    opcionPartida:=ElegirPartida;
     CASE opcionPartida OF
        'A', 'B', 'C':BEGIN
                 rango := 9;
