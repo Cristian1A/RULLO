@@ -32,7 +32,6 @@ VAR
 
 PROCEDURE ElegirPartida;
 BEGIN
-    //textcolor(lightred);
 
       WRITELN(' PARTIDAS DISPONIBLES ');
       WRITELN('     5x5  6x6  7x7');
@@ -234,8 +233,6 @@ REPEAT
   ActualizarTablaFilas(tablaF, dim);
  ActualizarTablaColumnas(tablaC, dim);
 
-
-
  FOR i := MIN TO dim DO BEGIN
     FOR j := MIN TO dim DO BEGIN
        WRITE(tablaF[i, j].activado: 8);
@@ -252,8 +249,6 @@ REPEAT
     end;
     WRITELN;
  end;
-
-
 
 END;
 
@@ -273,7 +268,6 @@ BEGIN
   WRITELN;
   WRITELN;
 
-
   k:=1;
   FOR i := MIN TO dim DO BEGIN
     FOR j := MIN TO dim DO BEGIN
@@ -292,43 +286,6 @@ BEGIN
   WRITELN;
 
 END;
-//Posibilidad de ahorrar código
-{PROCEDURE Sumatorio(tablaF, tablaC, tablaF_Bis, tablaC_Bis: TTabla;dim:integer);
-VAR
-  i, j: integer;
-BEGIN
-
-  WRITE('SUMATORIO FILAS ESPERADO -penultima columna a la derecha de la tabla-: ');
-  FOR i := MIN TO dim DO
-       WRITE(tablaF[i, 1].sumable: 2,', ');//rellena las columnas de una fila
-  WRITELN;
-  WRITELN;
-
-  WRITE('SUMATORIO COLUMNAS ESPERADO -segunda fila situada encima de la  tabla-: ');
-  FOR j := MIN TO dim DO
-       WRITE(tablaC[1, j].sumable: 2,', ');
-  WRITELN;
-  WRITELN;
-
-  WRITELN('      ***********************************************          ');
-  WRITELN;
-
-  WRITE('SUMATORIO FILAS ACTUAL -ultima columna en la derecha-: ');
-  FOR i := MIN TO dim DO
-       WRITE(tablaF_Bis[i, 1].sumable: 2,', ');//rellena las columnas de una fila
-  WRITELN;
-  WRITELN;
-
-  WRITE('SUMATORIO COLUMNAS ACTUAL -primera fila situada encima de la tabla-: ');
-  FOR j := MIN TO dim DO
-       WRITE(tablaC_Bis[1, j].sumable: 2,', ');
-  WRITELN;
-  WRITELN;
-
-  WRITELN('      ***********************************************          ');
-  WRITELN;
-
-END;}
 
 PROCEDURE Activacion(VAR tablaF: TTabla; VAR tablaC: TTabla; dim: integer);
 VAR
@@ -624,14 +581,11 @@ REPEAT
      READLN(columna);
   //cifra activada
      IF(tablaF_Bis[fila, columna].activado = TRUE) THEN BEGIN
-        //tablaF_Bis[fila,columna].visible:=0;
         tablaF_Bis[fila, columna].activado := FALSE;//desactivar
-        //tablaC_Bis[fila,columna].visible:=0;
         tablaC_Bis[fila, columna].activado := FALSE;
         ActualizarFila(tablaF_Bis, fila, dimension);
         ActualizarColumna(tablaC_Bis, columna, dimension);
         MostrarTabla(tablaF, tablaC, tablaF_Bis, tablaC_Bis, dimension);
-        //Sumatorio(tablaF, tablaC, tablaF_Bis, tablaC_Bis, dimension);
         numMovimientos := numMovimientos + 1;
      end
   //cifra desactivada
@@ -643,7 +597,6 @@ REPEAT
         ActualizarFila(tablaF_Bis, fila, dimension);
         ActualizarColumna(tablaC_Bis, columna, dimension);
         MostrarTabla(tablaF, tablaC, tablaF_Bis, tablaC_Bis, dimension);
-        //Sumatorio(tablaF, tablaC, tablaF_Bis, tablaC_Bis, dimension);
         numMovimientos := numMovimientos + 1;
      end;
   end;
@@ -665,7 +618,6 @@ BEGIN
                 DuplicarTablas(tablaF, tablaC, tablaF_Bis, tablaC_Bis, dimension);
                 InicializarTablaPartida(tablaF_Bis, tablaC_Bis, dimension);
                 MostrarTabla(tablaF, tablaC, tablaF_Bis, tablaC_Bis, dimension);
-                //Sumatorio(tablaF, tablaC, tablaF_Bis, tablaC_Bis, dimension);
                 JugarPartida(tablaF, tablaC, tablaF_Bis, tablaC_Bis, dimension, tope, partida, opcionPartida);
 
 end;
