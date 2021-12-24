@@ -38,9 +38,9 @@ FUNCTION ElegirPartida:char;
         WRITELN(' 1-9  A    B    C');
         WRITELN('1-19  D    E    F');
         WRITE('Escriba el tipo de partida que quiere jugar ');c:= readkey;
-        CLRSCR;
-      UNTIL(c='a') or (c='b') or (c='c') or (c='d') or (c='e') or (c='f');
-      ElegirPartida:= UPCASE(c);
+        CLRSCR; c:=UPCASE(c);
+      UNTIL(c='A') or (c='B') or (c='C') or (c='D') or (c='E') or (c='F');
+      ElegirPartida:= c;
     END;
 PROCEDURE Ayuda;
 BEGIN
